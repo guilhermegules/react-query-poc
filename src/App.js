@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
-function App() {
+import NavBar from "./components/NavBar";
+import Planets from "./components/Planets";
+import People from "./components/People";
+
+const App = () => {
+  const [page, setPage] = useState("planets");
+
   return (
-    <div className="App">
-      <h1>Hello </h1>
-    </div>
+    <main className="App">
+      <h1>Star Wars Info</h1>
+      <NavBar setPage={setPage} />
+      <section className="content">
+        {page === "planets" ? <Planets /> : <People />}
+      </section>
+    </main>
   );
-}
+};
 
 export default App;
