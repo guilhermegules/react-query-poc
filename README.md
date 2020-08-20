@@ -11,6 +11,7 @@ Application made for test and learn about react query
 ## What was used:
 
 - [React Query](https://react-query.tanstack.com/docs/overview)
+- [SWAPI](https://swapi.dev/documentation)
 
 ### Run application
 
