@@ -1,11 +1,15 @@
-import React from "react";
-import { useQuery } from "react-query";
+import React, { useState } from "react";
+import { usePaginatedQuery } from "react-query";
 
 import getPeople from "../../services/people-service";
 import Person from "../Person";
 
 const People = () => {
-  const { data, status } = useQuery("people", getPeople);
+  const [page, setPage] = useState(1);
+  const { resolvedData, latestData, status } = usePaginatedQuery(
+    ["people", page],
+    getPeople
+  );
 
   return (
     <div>
@@ -16,11 +20,30 @@ const People = () => {
       {status === "error" && <div>Error fetching data</div>}
 
       {status === "success" && (
-        <div>
-          {data.results.map((person) => (
-            <Person key={person.name} person={person} />
-          ))}
-        </div>
+        <>
+          <button
+            onClick={() => setPage((previous) => Math.max(previous - 1, 1))}
+            disabled={page === 1}
+          >
+            Previous page
+          </button>
+          <span>{page}</span>
+          <button
+            onClick={() =>
+              setPage((previous) =>
+                !latestData || !latestData.next ? previous : previous + 1
+              )
+            }
+            disabled={!latestData || !latestData.next}
+          >
+            Next page
+          </button>
+          <div>
+            {resolvedData.results.map((person) => (
+              <Person key={person.name} person={person} />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

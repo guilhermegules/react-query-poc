@@ -1,5 +1,5 @@
-const getPeople = async () => {
-  const response = await fetch("http://swapi.dev/api/people/");
+const getPeople = async (key, page) => {
+  const response = await fetch(`http://swapi.dev/api/people/?page=${page}`);
 
   return response.json();
 };

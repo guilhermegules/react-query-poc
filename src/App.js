@@ -8,13 +8,15 @@ const App = () => {
   const [page, setPage] = useState("planets");
 
   return (
-    <main className="App">
-      <h1>Star Wars Info</h1>
-      <NavBar setPage={setPage} />
-      <section className="content">
-        {page === "planets" ? <Planets /> : <People />}
-      </section>
-    </main>
+    <>
+      <main className="App">
+        <h1>Star Wars Info</h1>
+        <NavBar setPage={setPage} />
+        <section className="content">
+          {page === "planets" ? <Planets /> : <People />}
+        </section>
+      </main>
+    </>
   );
 };
 

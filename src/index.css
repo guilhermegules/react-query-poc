@@ -35,6 +35,11 @@ button:hover {
   transition: 0.5s;
 }
 
+button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
 .content {
   text-align: left;
 }

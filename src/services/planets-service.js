@@ -1,5 +1,5 @@
-const getPlanets = async () => {
-  const response = await fetch("http://swapi.dev/api/planets/");
+const getPlanets = async (key, page) => {
+  const response = await fetch(`http://swapi.dev/api/planets/?page=${page}`);
 
   return response.json();
 };
